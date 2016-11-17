@@ -1,70 +1,93 @@
-<!-- You are inside <body ng-controller="UserController as users">  -->
-<div class="module-card" ng-show="user.showEditForm">
-  <form class="new-flower" ng-submit="user.editFlower(user.editedFlower)" method="post">
-    <div class="module-card-title"><input type="text" ng-model="user.editedFlower.name" id="name" value=""></div>
-      <div class="module-card-meta">
-          <div class="module-card-category">
-            <span class="fa fa-tag"></span>
-            <label for="datePlanted">Date Planted:      </label>
-            <span><input type="date" ng-model="user.editedFlower.datePlanted" id="datePlanted" placeholder="Date Planted"></span>
+<div class="container">
+ <body ng-app="BackyardApp">
+  <div ng-controller="MainCtrl as main">
+    <!-- <h1 class="header">Hello{{user.username}}</h1> -->
+    <div class="flowers">
+      <div class="flower" ng-repeat="flower in main.flowers">
+            <p>Name: {{flower.name}}</p>
+            <p>Date Planted: {{flower.datePlanted | date:'short'}}</p>
+            <p>Perennial or Annual: {{flower.perennialOrAnnual}}</p>
+            <p>Sun: {{flower.sun}}</p>
+            <p>Water: {{flower.water}}</P>
+            <p>Memo: {{flower.memo}}</p>
+         <div class="nav">
+            <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
+            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(todo._id)">&#10006</button>
           </div>
-
-      <div class="module-card-bottom">
-        <input type="url" ng-model="user.editedFlower.imageUrl" id="imageUrl" placeholder="image url">
-      <div>
-        <textarea ng-model="user.editedFlower.memo" rows="6" cols="25" id="memo" placeholder="Tell more about this flower" maxlength="160"></textarea>
-      </div>
-      <div class="module-card-button-wrap">
-        <button class="module-card-button">Update!</button>
+        </div>
       </div>
     </div>
+    <div class="nav" ng-hide="main.isCreating || main.isEditing">
+      <button  class="btn btn-primary btn-sm" ng-click="main.startCreating()">Add Flowers!</button>
+  </div>
+      <div ng-show="main.isCreating" class="form">
+          <form ng-submit="main.addFlower(newFlower)">
+      <div>
+        <label for="newFlower">New Flower</label>
+        <input type="text" ng-model="newFlower.newFlower">
+    </div>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" ng-model="newFlower.name">
+    </div>
+    <div>
+      <label for="datePlanted">Date Planted</label>
+      <input type="date" ng-model="newFlower.datePlanted">
+    </div>
+    <div>
+      <label for="perennialOrAnnual">Perennial or Annual</label>
+      <input type="text" ng-model="newFlower.perennialOrAnnual">
+    </div>
+    <div>
+      <label for="sun">Sun</label>
+      <input type="text" ng-model="newFlower.sun">
+    </div>
+    <div>
+      <label for="water">Water</label>
+      <input type="text" ng-model="newFlower.water">
+    </div>
+    <div>
+      <label for="memo">Memo</label>
+      <input type="text" ng-model="newFlower.memo">
+    </div>
+      <button  class="btn btn-primary btn-sm" id="add-flower" type="submit">Add Flower!</button>
+      </form>
+      <button  class="btn btn-primary btn-sm" ng-click="main.reset(newFlower)">Reset</button>
+    </div>
+
+    <div ng-show="main.isEditing" class="edit-form">
+      <form ng-submit="main.editFlower(main.editedFlower)" action="#">
+    <div>
+      <label for="newFlower">New Flower</label>
+      <input type="text" ng-model="main.editedFlower.newFlower">
+    </div>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" ng-model="main.editedFlower.name">
+    </div>
+    <div>
+      <label for="datePlanted">Date Planted</label>
+      <input type="date" ng-model="main.editedFlower.datePlanted">
+    </div>
+    <div>
+      <label for="perennialOrAnnual">Perennial or Annual</label>
+      <input type="text" ng-model="main.editedFlower.perennialOrAnnual">
+    </div>
+    <div>
+      <label for="sun">Sun</label>
+      <input type="text" ng-model="main.editedFlower.sun">
+    </div>
+    <div>
+      <label for="water">Water</label>
+      <input type="text" ng-model="main.editedFlower.water">
+    </div>
+    <div>
+      <label for="memo">Memo</label>
+      <input type="text" ng-model="main.editedFlower.memo">
+    </div>
+      <button  class="btn btn-primary btn-sm" type="submit">Edit This Flower!</button>
     </form>
     </div>
   </div>
-
-    <div class="module-card-wrap">
-     <!-- Adding a new flower -->
-     <div class="module-card">
-      <form class="new-destination" ng-submit="user.addFlower()" method="post">
-      <div class="module-card-title"><input type="text" ng-model="user.newFlower.name" id="name" placeholder="Click to add a flower"></div>
-      <div class="module-card-meta">
-        <div class="module-card-category">
-          <!-- <span class="fa fa-tag"></span> -->
-          <label for="datePlanted">Date Planted:</label>
-          <span><input type="date" ng-model="user.newFlower.datePlanted" id="datePlanted" placeholder="Date Planted"></span>
-        </div>
-      </div>
-    <div class="module-card-bottom">
-    <input type="url" ng-model="user.newFlower.imageUrl" id="imageUrl" placeholder="image url">
-    <div>
-      <textarea ng-model="user.newFlower.memo" rows="6" cols="25" id="memo" placeholder="Tell more about this flower" maxlength="160"></textarea>
-    </div>
-    <div class="module-card-button-wrap">
-      <button class="module-card-button">Add!</button>
-    </div>
-  </div>
-  </form>
-  </div>
-
-    <!-- Repeat through all flowers and display as cards -->
-    <div class="module-card" ng-repeat="flower in user.myFlowers">
-      <div class="module-card-title">{{flower.name}}</div>
-      <div class="module-card-meta">
-        <div class="module-card-category">
-          <span class="fa fa-tag"></span>
-          <span>{{flower.datePlanted | date: 'mediumDate'}}</span>
-        </div>
- <!-- /module-card-meta -->
-       <div class="module-card-bottom">
-         <img src="{{flower.imageUrl}}" alt="cheesecake" class="module-card-img"/>
-      <div>
-       <p>{{trip.name}}</p>
-      </div>
-       <div class="module-card-button-wrap">
-       <button ng-click="user.deleteFlower(flower.flowerId)" class="module-card-button">Delete Me!</button>
-       <button ng-click="user.setFlowerToEdit(flower)" class="module-card-button">Edit Me!</button>
-       </div>
-    </div>
-  </div>
 </div>
-</div>
+</body>

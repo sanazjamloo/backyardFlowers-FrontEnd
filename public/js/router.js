@@ -1,6 +1,6 @@
 (function() {
   angular
-    .modular('BackyardApp', ['ui.router'])
+    .module('BackyardApp', ['ui.router'])
     .config(MainRouter);
 
     MainRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
