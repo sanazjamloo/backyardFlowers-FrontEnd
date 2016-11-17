@@ -1,10 +1,9 @@
 (function() {
   angular.module('BackyardApp')
-    .controller('MainController', MainController);
+    .controller('MainController', function($http, $state, $stateParams){
 
-    MainController.$inject = [$http, $state, $stateParams];
 
-    function MainController($http, $state, $stateParams) {
+
       var self = this;
       var rootUrl = 'http://localhost:3000'
       // Or var rootUrl = 'https://backyard-flowers-back-end.herokuapp.com'
@@ -51,6 +50,12 @@
         })
       } // end Login
 
+      // this method will hit the rails api for the log out route and will log out the user
+        this.logout = function(user){
+        localStorage.removeItem('user');
+        localStorage.removeItem('token')
+        $state.go('index', {url: '/'})
+      } // end this.logout
 
 
 
@@ -68,5 +73,8 @@
 
 
 
+
+
+  });
 
 })()
