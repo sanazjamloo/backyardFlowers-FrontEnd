@@ -7,9 +7,9 @@
 
     function MainRouter($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-    .state('index', {
+    .state('blank', {
       url: '/',
-      templateUrl: 'index.html'
+      templateUrl: 'blank.html'  //this shows up at the beginning -- change it if applicable
     })
     .state('login', {
      url: '/login',
@@ -22,7 +22,7 @@
     .state('home', {
       url: '/home',
       templateUrl: 'home.html'
-    })
+    });
     $urlRouterProvider.otherwise('/');
 
      $locationProvider.html5Mode({

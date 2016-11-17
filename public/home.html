@@ -1,6 +1,5 @@
 <div class="container">
- <!-- <body ng-app="BackyardApp">
-  <div ng-controller="MainController as main"> -->
+Hello from home.html
     <!-- <h1 class="header">Hello{{user.username}}</h1> -->
     <div class="flowers">
       <div class="flower" ng-repeat="flower in main.flowers">
@@ -12,43 +11,42 @@
             <p>Memo: {{flower.memo}}</p>
          <div class="nav">
             <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
-            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(todo._id)">&#10006</button>
+            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(flower._id)">&#10006</button>
           </div>
         </div>
       </div>
-    </div>
     <div class="nav" ng-hide="main.isCreating || main.isEditing">
       <button  class="btn btn-primary btn-sm" ng-click="main.startCreating()">Add Flowers!</button>
   </div>
       <div ng-show="main.isCreating" class="form">
-          <form ng-submit="main.addFlower(newFlower)">
-      <div>
+          <form ng-submit="main.addFlower(main.newFlower, main.user.id)">
+      <!-- <div>
         <label for="newFlower">New Flower</label>
-        <input type="text" ng-model="newFlower.newFlower">
-    </div>
+        <input type="text" ng-model="main.newFlower">
+    </div> -->
     <div>
       <label for="name">Name</label>
-      <input type="text" ng-model="newFlower.name">
+      <input type="text" ng-model="main.newFlower.name">
     </div>
     <div>
       <label for="datePlanted">Date Planted</label>
-      <input type="date" ng-model="newFlower.datePlanted">
+      <input type="date" ng-model="main.newFlower.datePlanted">
     </div>
     <div>
       <label for="perennialOrAnnual">Perennial or Annual</label>
-      <input type="text" ng-model="newFlower.perennialOrAnnual">
+      <input type="text" ng-model="main.newFlower.perennialOrAnnual">
     </div>
     <div>
       <label for="sun">Sun</label>
-      <input type="text" ng-model="newFlower.sun">
+      <input type="text" ng-model="main.newFlower.sun">
     </div>
     <div>
       <label for="water">Water</label>
-      <input type="text" ng-model="newFlower.water">
+      <input type="text" ng-model="main.newFlower.water">
     </div>
     <div>
       <label for="memo">Memo</label>
-      <input type="text" ng-model="newFlower.memo">
+      <input type="text" ng-model="main.newFlower.memo">
     </div>
       <button  class="btn btn-primary btn-sm" id="add-flower" type="submit">Add Flower!</button>
       </form>
