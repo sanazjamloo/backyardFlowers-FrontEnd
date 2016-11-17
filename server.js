@@ -7,7 +7,7 @@ var port       = process.env.PORT || 4000
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/todos', require('./controllers/todos.js'));
+// app.use('/flowers', require('./flowers_controller.js'));
 
 app.get('/', function(req, res) {
   res.render('index');

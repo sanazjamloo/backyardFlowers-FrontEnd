@@ -1,40 +1,72 @@
 (function() {
-  angular
-    .module('BackyardApp')
-    .controller('MainController', function($http, $state) {
+  angular.module('BackyardApp')
+    .controller('MainController', MainController);
+
+    MainController.$inject = [$http, $state, $stateParams];
+
+    function MainController($http, $state, $stateParams) {
       var self = this;
       var rootUrl = 'http://localhost:3000'
       // Or var rootUrl = 'https://backyard-flowers-back-end.herokuapp.com'
 
-// USER FUNCTIONS
-
-      this.signup = function(user) {
-        console.log(user, 'user');
-        self.signed = user;
+      self.currentUser = JSON.parse(localStorage.getItem('user'));
+      self.newPassword = {};
+      //this method will hit the create route in the rails api and will create a new user
+      this.createUser = function(user) {
         return $http({
           url: `${rootUrl}/users`,
           method: 'POST',
-          data: {user : user}
+          data: {user: user}
         })
-        .then(function(response) {
-          console.log(response);
+        .then(function(response){
           if (response.data.status === 200) {
+            console.log('success');
             self.success = true;
-            self.login(self.signed);
-          } else {
-            console.log(response)
-            if (response.data.user.email_address) {
-            failAlert('Registration failed. Email ' + response.data.user.email_address[0]);
-          } else if (response.data.user.username) {
-            failAlert('Registration failed. Username '+ response.data.user.username[0]);
-          }
           }
         })
-        .catch(function(err) {
+        .then(function(response){
+          $state.go('home', {url: '/home'});
+        })
+        .catch(function(err){
           console.log(err);
         })
-      }
+      } // end createUser
+
+      // this method will hit the rails api for the login route and login the user with jwt
+      this.login = function(user){
+        return $http({
+          url: `${rootUrl}/users/login`,
+          method: 'POST',
+          data: {user: user}
+        })
+        .then(function(response){
+          self.currentUser = response.data.user
+          self.id = response.data.user.id
+          localStorage.setItem('token', JSON.stringify(response.data.token))
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          $state.go('home', {url: '/home', user: response})
+        })
+        .catch(function(error){
+          console.log('Error', error);
+        })
+      } // end Login
 
 
- });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })()
