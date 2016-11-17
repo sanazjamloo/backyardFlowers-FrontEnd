@@ -1,0 +1,70 @@
+<!-- You are inside <body ng-controller="UserController as users">  -->
+<div class="module-card" ng-show="user.showEditForm">
+  <form class="new-flower" ng-submit="user.editFlower(user.editedFlower)" method="post">
+    <div class="module-card-title"><input type="text" ng-model="user.editedFlower.name" id="name" value=""></div>
+      <div class="module-card-meta">
+          <div class="module-card-category">
+            <span class="fa fa-tag"></span>
+            <label for="datePlanted">Date Planted:      </label>
+            <span><input type="date" ng-model="user.editedFlower.datePlanted" id="datePlanted" placeholder="Date Planted"></span>
+          </div>
+
+      <div class="module-card-bottom">
+        <input type="url" ng-model="user.editedFlower.imageUrl" id="imageUrl" placeholder="image url">
+      <div>
+        <textarea ng-model="user.editedFlower.memo" rows="6" cols="25" id="memo" placeholder="Tell more about this flower" maxlength="160"></textarea>
+      </div>
+      <div class="module-card-button-wrap">
+        <button class="module-card-button">Update!</button>
+      </div>
+    </div>
+    </form>
+    </div>
+  </div>
+
+    <div class="module-card-wrap">
+     <!-- Adding a new flower -->
+     <div class="module-card">
+      <form class="new-destination" ng-submit="user.addFlower()" method="post">
+      <div class="module-card-title"><input type="text" ng-model="user.newFlower.name" id="name" placeholder="Click to add a flower"></div>
+      <div class="module-card-meta">
+        <div class="module-card-category">
+          <!-- <span class="fa fa-tag"></span> -->
+          <label for="datePlanted">Date Planted:</label>
+          <span><input type="date" ng-model="user.newFlower.datePlanted" id="datePlanted" placeholder="Date Planted"></span>
+        </div>
+      </div>
+    <div class="module-card-bottom">
+    <input type="url" ng-model="user.newFlower.imageUrl" id="imageUrl" placeholder="image url">
+    <div>
+      <textarea ng-model="user.newFlower.memo" rows="6" cols="25" id="memo" placeholder="Tell more about this flower" maxlength="160"></textarea>
+    </div>
+    <div class="module-card-button-wrap">
+      <button class="module-card-button">Add!</button>
+    </div>
+  </div>
+  </form>
+  </div>
+
+    <!-- Repeat through all flowers and display as cards -->
+    <div class="module-card" ng-repeat="flower in user.myFlowers">
+      <div class="module-card-title">{{flower.name}}</div>
+      <div class="module-card-meta">
+        <div class="module-card-category">
+          <span class="fa fa-tag"></span>
+          <span>{{flower.datePlanted | date: 'mediumDate'}}</span>
+        </div>
+ <!-- /module-card-meta -->
+       <div class="module-card-bottom">
+         <img src="{{flower.imageUrl}}" alt="cheesecake" class="module-card-img"/>
+      <div>
+       <p>{{trip.name}}</p>
+      </div>
+       <div class="module-card-button-wrap">
+       <button ng-click="user.deleteFlower(flower.flowerId)" class="module-card-button">Delete Me!</button>
+       <button ng-click="user.setFlowerToEdit(flower)" class="module-card-button">Edit Me!</button>
+       </div>
+    </div>
+  </div>
+</div>
+</div>
