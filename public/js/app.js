@@ -3,15 +3,39 @@
     .controller('MainController', function($http, $state, $stateParams){
 
 
-
       var self = this;
       var rootUrl = 'http://localhost:3000'
       // Or var rootUrl = 'https://backyard-flowers-back-end.herokuapp.com'
+//====================================================
+// keeping track of app states
+      this.isCreating   = false;
+      this.isEditing    = false;
+      this.editedFlower = null;
 
-      this.isCreating = true;
-      this.isEditing  = true;
-      this.startCreating = true;
+      function startCreating() {
+        this.isCreating = true;
+        this.isEditing  = false;
+      }
 
+      function startEditing() {
+        this.isCreating = false;
+        this.isEditing  = true;
+      }
+      function setFlowerToEdit(flower){
+        this.editedFlower = flower;
+      }
+      function reset(flower) {
+        this.isCreating  = false;
+        this.isEditing   = false;
+      }
+      // this.isCreating    = true;
+      // this.isEditing     = true;
+      // this.startCreating = true;
+      // this.isDeleting    = true;
+//=======================================================
+//CRUD logic
+
+  //User Sign up
       self.currentUser = JSON.parse(localStorage.getItem('user'));
       self.newPassword = {};
       this.createUser = function(user) {
@@ -34,7 +58,7 @@
         })
       } // end createUser
 
-      // Log in through jwt
+      // User Log in through jwt
       this.login = function(user){
         return $http({
           url: `${rootUrl}/users/login`,
@@ -91,22 +115,55 @@
       }
 
 
+      // delete a flower
+      this.deleteFlower = function(user_id, flower_id) {
+      console.log('user:', user_id, 'flower_id:', flower_id);
+      console.log('flower deleted');
+      self.flowers.splice(flower_id);
+      return $http({
+        url: `${rootUrl}/users/${self.id}/flowers/${flower_id}`,
+        method: 'DELETE'
+        data: {flower: deletedFlower}
+      })
+      .then(function(response) {
+        console.log(response);
+        return response;
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+    }
 
 
+  // Update/Edit a flower
 
+      this.updateFlower = function(user_id, flower_id) {
+      console.log('user:', user_id, 'flower_id:', flower_id);
+      console.log('flower updated');
+      return $http({
+        url: `${rootUrl}/users/${self.id}/flowers/${flower_id}`,
+        method: 'PATCH',
+        data: {flower: updatedFlower}
+      })
+      .then(function(response) {
+        self.updatedFlower = {};
+        console.log('flower updated');
+        $state.go('home', {url: '/home', flower: response.data.flower});
+        console.log(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+      // public methods
+      this.startCreating = startCreating;
+      // this.addFlower = addFlower;
+      // this.deleteFlower = deleteFlower;
+      // this.startEditing = startEditing;
+      // this.setFlowerToEdit = setFlowerToEdit;
+      // this.editFlower = editFlower;
+      this.reset = reset;
+      
   });
-
-})()
+})();

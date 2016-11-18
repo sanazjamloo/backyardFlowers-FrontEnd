@@ -19,11 +19,12 @@
           <h1>What do you have in your backyard?</h1>
            {{1+1}}
           <ul id="" class="">
+            <li  class='nav-link' ng-show="site.user">Welcome, {{main.user.username}}</li>
             <li><button id='login' ui-sref='login'  ng-hide='main.user'>Log In</button></li>
             <li><button id='signup' ui-sref='signup' ng-hide='main.user'>Sign Up</button></li>
           </ul>
           <ul id="" class="">
-            <li><button id='logout' ui-sref='logout' ui-sref-active='active' ng-click='main.logout(main.user)'>Log Out</button></li>
+            <li><button id='logout'ng-show="main.user" ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button></li>
           </ul>
         </header>
 

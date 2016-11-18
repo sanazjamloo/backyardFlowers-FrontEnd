@@ -11,7 +11,7 @@ Hello from home.html
             <p>Memo: {{flower.memo}}</p>
          <div class="nav">
             <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
-            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(flower._id)">&#10006</button>
+            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  main.flower.id)">&#10006</button>
           </div>
         </div>
       </div>
@@ -87,6 +87,6 @@ Hello from home.html
     </form>
     </div>
   </div>
-    <button id='logout' ui-sref='logout' ui-sref-active='active' ng-click='main.logout(main.user)'>Log Out</button>
+    <button id='logout' ui-sref='logout' ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button>
 </div>
 </body>
