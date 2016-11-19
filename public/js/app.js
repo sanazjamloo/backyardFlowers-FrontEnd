@@ -3,14 +3,16 @@
     .controller('MainController', function($http, $state, $stateParams){
 
 
-      var self = this;
-      var rootUrl = 'http://localhost:3000'
+      var self      = this;
+      var rootUrl   = 'http://localhost:3000'
+      // var flower    = flower_id
       // Or var rootUrl = 'https://backyard-flowers-back-end.herokuapp.com'
 //====================================================
 // keeping track of app states
       this.isCreating   = false;
       this.isEditing    = false;
       this.editedFlower = null;
+      this.editFlower   = true;
 
       function startCreating() {
         this.isCreating = true;
@@ -22,7 +24,9 @@
         this.isEditing  = true;
       }
       function setFlowerToEdit(flower){
-        this.editedFlower = flower;
+        self.editedFlower = flower;
+        self.editFlower   = true;
+        console.log('success'+flower);
       }
       function reset(flower) {
         this.isCreating  = false;
@@ -31,7 +35,6 @@
       // this.isCreating    = true;
       // this.isEditing     = true;
       // this.startCreating = true;
-      // this.isDeleting    = true;
 //=======================================================
 //CRUD logic
 
@@ -115,18 +118,25 @@
       }
 
 
-      // delete a flower
-      this.deleteFlower = function(user_id, flower_id) {
-      console.log('user:', user_id, 'flower_id:', flower_id);
-      console.log('flower deleted');
-      self.flowers.splice(flower_id);
+      // Delete a flower
+      this.deleteFlower = function(user_id, newFlower) {
+      //console.log('user:', self.id, 'flower_id:', newFlower);
+      //console.log('flower deleted');
+      var index = self.flowers.findIndex(function(element){  // find the index # of flower here
+          return element.id === newFlower;
+      })
+      console.log('newFlower is ', newFlower);
+      console.log('array[index] is ', self.flowers[index]);
+      self.flowers.splice(index, 1);
       return $http({
-        url: `${rootUrl}/users/${self.id}/flowers/${flower_id}`,
+        url: `${rootUrl}/users/${self.id}/flowers/${newFlower}`,
         method: 'DELETE'
-        data: {flower: deletedFlower}
+        // data: {flower: deletedFlower}
       })
       .then(function(response) {
         console.log(response);
+        $state.go('home', {url: '/home', user: response});
+
         return response;
       })
       .catch(function(err) {
@@ -135,18 +145,18 @@
     }
 
 
-  // Update/Edit a flower
+  // Edit a flower
 
-      this.updateFlower = function(user_id, flower_id) {
-      console.log('user:', user_id, 'flower_id:', flower_id);
+      this.updateFlower = function(user_id, newFlower) {
+      console.log('user:', self.id, 'flower_id:', newFlower);
       console.log('flower updated');
       return $http({
-        url: `${rootUrl}/users/${self.id}/flowers/${flower_id}`,
+        url: `${rootUrl}/users/${self.id}/flowers/${newFlower}`,
         method: 'PATCH',
-        data: {flower: updatedFlower}
+        // data: {flower: flower_id}
       })
       .then(function(response) {
-        self.updatedFlower = {};
+        self.editedFlower = {};
         console.log('flower updated');
         $state.go('home', {url: '/home', flower: response.data.flower});
         console.log(response);
@@ -160,10 +170,10 @@
       this.startCreating = startCreating;
       // this.addFlower = addFlower;
       // this.deleteFlower = deleteFlower;
-      // this.startEditing = startEditing;
-      // this.setFlowerToEdit = setFlowerToEdit;
+      this.startEditing = startEditing;
+      this.setFlowerToEdit = setFlowerToEdit;
       // this.editFlower = editFlower;
       this.reset = reset;
-      
+
   });
 })();

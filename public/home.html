@@ -1,6 +1,8 @@
 <div class="container">
 Hello from home.html
-    <!-- <h1 class="header">Hello{{user.username}}</h1> -->
+<a ui-sref-active="active" ui-sref="user"  ng-show="true" class="welcome" ng-if="main.currentUser"> <!-- CHANGE NG-HIDE -->
+  <h3>Welcome, {{ main.currentUser.username }}!</h3>
+</a>
     <div class="flowers">
       <div class="flower" ng-repeat="flower in main.flowers">
             <p>Name: {{flower.name}}</p>
@@ -10,8 +12,10 @@ Hello from home.html
             <p>Water: {{flower.water}}</P>
             <p>Memo: {{flower.memo}}</p>
          <div class="nav">
-            <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
-            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  main.flower.id)">&#10006</button>
+           
+           <div class="edit-form" ng-show="main.showEditForm">
+            <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower)">Edit</button>
+            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  flower.id)">&#10006</button>
           </div>
         </div>
       </div>
@@ -20,10 +24,6 @@ Hello from home.html
   </div>
       <div ng-show="main.isCreating" class="form">
           <form ng-submit="main.addFlower(main.newFlower, main.user.id)">
-      <!-- <div>
-        <label for="newFlower">New Flower</label>
-        <input type="text" ng-model="main.newFlower">
-    </div> -->
     <div>
       <label for="name">Name</label>
       <input type="text" ng-model="main.newFlower.name">
@@ -50,15 +50,11 @@ Hello from home.html
     </div>
       <button  class="btn btn-primary btn-sm" id="add-flower" type="submit">Add Flower!</button>
       </form>
-      <button  class="btn btn-primary btn-sm" ng-click="main.reset(newFlower)">Reset</button>
+      <button  class="btn btn-primary btn-sm" ng-click="main.reset(newFlower)">Done</button>
     </div>
 
     <div ng-show="main.isEditing" class="edit-form">
       <form ng-submit="main.editFlower(main.editedFlower)" action="#">
-    <div>
-      <label for="newFlower">New Flower</label>
-      <input type="text" ng-model="main.editedFlower.newFlower">
-    </div>
     <div>
       <label for="name">Name</label>
       <input type="text" ng-model="main.editedFlower.name">
@@ -83,7 +79,7 @@ Hello from home.html
       <label for="memo">Memo</label>
       <input type="text" ng-model="main.editedFlower.memo">
     </div>
-      <button  class="btn btn-primary btn-sm" type="submit">Edit This Flower!</button>
+      <button  class="btn btn-primary btn-sm" type="submit" ng-click="main.editFlower(main.user.id,  flower.id)">Edit This Flower!</button>
     </form>
     </div>
   </div>

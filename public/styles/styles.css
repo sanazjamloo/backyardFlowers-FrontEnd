@@ -1,0 +1,40 @@
+body {
+  background-image: url('http://i.imgur.com/JjYGymZ.jpg');
+  background-size: cover;
+  font-family: 'Nixie One', cursive;
+  font-size: 2em;
+  background-repeat:repeat-y;
+  color: black;
+  /*color: #fcf8e3;*/
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 4em;
+  font-weight: bold;
+  text-shadow: 2px 2px #dff0d8;
+  text-align: center;
+  margin-top: 6%;
+  color: #555;
+}
+
+.user-logs {
+  display: flex;
+  margin: 17%;
+  justify-content: center;
+}
+
+.btn-default {
+    background-image: linear-gradient(to bottom,#dff0d8 0,#fcf8e3 100%);
+    background-repeat: repeat-x;
+    border-color: #5cb85c;
+    color: #e009c2;
+    background-color: #dff0d8;
+}
+
+#login {
+  margin-right: 1%;
+}

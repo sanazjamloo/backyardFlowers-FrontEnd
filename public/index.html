@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Backyard Flowers</title>
+    <link href="https://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="styles/style.css"> -->
+    <link rel="stylesheet" href="styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="js/router.js"></script>
@@ -16,20 +17,18 @@
   <body ng-app="BackyardApp">
     <div ng-controller="MainController as main">
       <header>
-          <h1>What do you have in your backyard?</h1>
            {{1+1}}
+           <ul  class="user-logs">
+             <li><button type="button" class="btn btn-default btn-lg btn-block" id='login' ui-sref='login' ng-hide='main.user'>Log In</button></li>
+             <li><button type="button" class="btn btn-default btn-lg btn-block" id='signup' ui-sref='signup' ng-hide='main.user'>Sign Up</button></li>
+           </ul>
+           <h1>What do you have in your backyard?</h1>
+
           <ul id="" class="">
-            <li  class='nav-link' ng-show="site.user">Welcome, {{main.user.username}}</li>
-            <li><button id='login' ui-sref='login'  ng-hide='main.user'>Log In</button></li>
-            <li><button id='signup' ui-sref='signup' ng-hide='main.user'>Sign Up</button></li>
-          </ul>
-          <ul id="" class="">
-            <li><button id='logout'ng-show="main.user" ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button></li>
+            <li><button id='logout' ng-show="main.user" ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button></li>
           </ul>
         </header>
-
               <div ui-view></div>
-
         </div>
   </body>
 </html>
