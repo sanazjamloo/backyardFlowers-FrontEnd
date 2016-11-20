@@ -12,17 +12,17 @@ Hello from home.html
             <p>Water: {{flower.water}}</P>
             <p>Memo: {{flower.memo}}</p>
          <div class="nav">
-           
-           <div class="edit-form" ng-show="main.showEditForm">
-            <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower)">Edit</button>
-            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  flower.id)">&#10006</button>
+
+           <!-- <div class="edit-form" ng-show="main.showEditForm"> -->
+            <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
+            <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  flower.id)">Delete</button>
           </div>
         </div>
       </div>
     <div class="nav" ng-hide="main.isCreating || main.isEditing">
       <button  class="btn btn-primary btn-sm" ng-click="main.startCreating()">Add Flowers!</button>
   </div>
-      <div ng-show="main.isCreating" class="form">
+      <div ng-show="main.isCreating" class="create-form">
           <form ng-submit="main.addFlower(main.newFlower, main.user.id)">
     <div>
       <label for="name">Name</label>

@@ -2,9 +2,9 @@ body {
   background-image: url('http://i.imgur.com/JjYGymZ.jpg');
   background-size: cover;
   font-family: 'Nixie One', cursive;
-  font-size: 2em;
-  background-repeat:repeat-y;
-  color: black;
+  font-weight: 500;
+  background-repeat: repeat-x;
+  color: #5D4037;
   /*color: #fcf8e3;*/
 }
 
@@ -21,20 +21,149 @@ h1 {
   color: #555;
 }
 
+h5 {
+  font-size: 2em;
+}
+
 .user-logs {
   display: flex;
-  margin: 17%;
-  justify-content: center;
+  margin: 0;
+  justify-content: space-around;
 }
 
 .btn-default {
-    background-image: linear-gradient(to bottom,#dff0d8 0,#fcf8e3 100%);
-    background-repeat: repeat-x;
-    border-color: #5cb85c;
-    color: #e009c2;
-    background-color: #dff0d8;
+  background-image: linear-gradient(to bottom,#dff0d8 0,rgba(255, 255, 255, 0) 100%);  background-repeat: repeat-x;
+  border-color: #5cb85c;
+  color: #e009c2;
+  background-color: rgba(223, 243, 215, 0.5);
+  width: 233%;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.signup-form-control {
+  background-color: transparent;
+  border-color: #5cb85c;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-left: 12%;
+  margin: 0%;
+  width: 32%;
+}
+
+.signup-form-group {
+  /*background-color: red;*/
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 1%;
+  text-shadow: 0.5px 0.5px #dff0d8;
+  color: #fcf8e3;
+  font-size: 27px;
+  text-shadow: 0.5px 0.5px rgba(223, 240, 216, 0);
+}
+
+.row {
+  margin-top: 5%;
+}
+
+.end {
+  margin-left: 47%;
+  margin-top: 6%;
+  text-shadow: 0.5px 0.5px #dff0d8;
+  color: #524a4a;
+}
+
+.login-form-group {
+  width: 61%;
+  display: block;
+  justify-content: center;
+  align-content: center;
+  margin-left: 16%;
+  margin-top: 5%;
+  text-shadow: 0.5px 0.5px #dff0d8;
+  color: #524a4a;
+  font-size: 20px;
+}
+
+.login-form {
+  background-color: transparent;
+  border-color: #5cb85c;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  margin-left: 32%;
+}
+
+.flowers {
+  background-color: red;
+  color: aqua;
+  font-size: 20px;
+  width: 25%;
+}
+
+.flower {
+  border: solid;
+  padding: 6%;
+}
+
+#e-mail {
+  margin-left: 7%;
+}
+
+#username1  {
+  margin-left: 4%;
+}
+
+#username2, #password2 {
+  margin-right: 5%;
+}
+
+#password1 {
+margin-left: 4%;
 }
 
 #login {
   margin-right: 1%;
+}
+
+#login2 {
+  width: 25%;
+  justify-content: center;
+  align-content: center;
+  margin-left: 41%;
+  margin-top: 3%;
+}
+
+#signup2 {
+  width: 25%;
+  justify-content: center;
+  align-content: center;
+  margin-left: 42%;
+  margin-top: 3%;
+}
+
+#login3 {
+  width: 25%;
+}
+
+#input, #input1 {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-color: #5cb85c;
+  background-color: transparent;
+  border-radius: 5px;
+  width: 70%;
+  height: 2vw;
+  margin-left: 8%;
+  color: #fcf8e3;
+  font-size: 1.5em;
 }

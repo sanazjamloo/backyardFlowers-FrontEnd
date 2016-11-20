@@ -12,7 +12,7 @@
       this.isCreating   = false;
       this.isEditing    = false;
       this.editedFlower = null;
-      this.editFlower   = true;
+      self.editFlower   = true;
 
       function startCreating() {
         this.isCreating = true;
@@ -44,6 +44,7 @@
       this.createUser = function(user) {
         return $http({
           url: `${rootUrl}/users`,
+
           method: 'POST',
           data: {user: user}
         })
@@ -51,6 +52,7 @@
           if (response.data.status === 200) {
             console.log('success');
             self.success = true;
+            self.login(user);
           }
         })
         .then(function(response){
@@ -120,8 +122,8 @@
 
       // Delete a flower
       this.deleteFlower = function(user_id, newFlower) {
-      //console.log('user:', self.id, 'flower_id:', newFlower);
-      //console.log('flower deleted');
+      console.log('user:', self.id, 'flower_id:', newFlower);
+      console.log('flower deleted');
       var index = self.flowers.findIndex(function(element){  // find the index # of flower here
           return element.id === newFlower;
       })
@@ -147,13 +149,13 @@
 
   // Edit a flower
 
-      this.updateFlower = function(user_id, newFlower) {
+      this.editFlower = function(user_id, newFlower) {
       console.log('user:', self.id, 'flower_id:', newFlower);
       console.log('flower updated');
       return $http({
         url: `${rootUrl}/users/${self.id}/flowers/${newFlower}`,
         method: 'PATCH',
-        // data: {flower: flower_id}
+        data: {flower: newFlower}
       })
       .then(function(response) {
         self.editedFlower = {};
@@ -164,16 +166,18 @@
       .catch(function(err) {
         console.log(err);
       })
+      this.isEditing = false;
+
     }
 
       // public methods
       this.startCreating = startCreating;
       // this.addFlower = addFlower;
       // this.deleteFlower = deleteFlower;
-      this.startEditing = startEditing;
+      this.startEditing    = startEditing;
       this.setFlowerToEdit = setFlowerToEdit;
-      // this.editFlower = editFlower;
-      this.reset = reset;
+      // this.editFlower      = editFlower;
+      this.reset           = reset;
 
   });
 })();
