@@ -21,12 +21,9 @@
            <ul  class="user-logs">
              <li><button type="button" class="btn btn-default btn-lg btn-block" id='login' ui-sref='login' ng-hide='main.user'>Log In</button></li>
              <li><button type="button" class="btn btn-default btn-lg btn-block" id='signup' ui-sref='signup' ng-hide='main.user'>Sign Up</button></li>
+             <li><button  type="button" class="btn btn-default" id='logout'  ng-click='main.logout(user)'>Log Out</button>
            </ul>
            <h1>What do you have in your backyard?</h1>
-
-          <ul id="" class="">
-            <li><button id='logout' ng-show="main.user" ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button></li>
-          </ul>
         </header>
               <div ui-view></div>
         </div>

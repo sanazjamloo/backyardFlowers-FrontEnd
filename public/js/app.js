@@ -4,11 +4,10 @@
 
 
       var self      = this;
+      // var rootUrl   = 'https://backyard-flowers-back-end.herokuapp.com'
       var rootUrl   = 'http://localhost:3000'
-      // var flower    = flower_id
-      // Or var rootUrl = 'https://backyard-flowers-back-end.herokuapp.com'
 //====================================================
-// keeping track of app states
+// keeping track of editing and creating states
       this.isCreating   = false;
       this.isEditing    = false;
       this.editedFlower = null;
@@ -22,11 +21,13 @@
       function startEditing() {
         this.isCreating = false;
         this.isEditing  = true;
+        console.log(this.editedFlower);
       }
       function setFlowerToEdit(flower){
-        self.editedFlower = flower;
-        self.editFlower   = true;
-        console.log('success'+flower);
+        this.editedFlower = flower;
+        // this.editFlower   = true;
+
+        console.log('edited flower sucess :'+flower.id);
       }
       function reset(flower) {
         this.isCreating  = false;
@@ -44,7 +45,6 @@
       this.createUser = function(user) {
         return $http({
           url: `${rootUrl}/users`,
-
           method: 'POST',
           data: {user: user}
         })
@@ -63,7 +63,7 @@
         })
       } // end createUser
 
-      // User Log in through jwt
+      // User Log In through jwt
       this.login = function(user){
         return $http({
           url: `${rootUrl}/users/login`,
@@ -85,7 +85,7 @@
             })
           })
           .then(function(response) {
-            console.log(response);
+            console.log('it looks like this when login:'+response+'and the use is ' + self.id);
             self.flowers = response.data.flowers;
           })
         .catch(function(error){
@@ -118,8 +118,6 @@
           console.log(err);
         })
       }
-
-
       // Delete a flower
       this.deleteFlower = function(user_id, newFlower) {
       console.log('user:', self.id, 'flower_id:', newFlower);
@@ -133,12 +131,10 @@
       return $http({
         url: `${rootUrl}/users/${self.id}/flowers/${newFlower}`,
         method: 'DELETE'
-        // data: {flower: deletedFlower}
       })
       .then(function(response) {
-        console.log(response);
+        console.log('when deleting response is : ' + response);
         $state.go('home', {url: '/home', user: response});
-
         return response;
       })
       .catch(function(err) {
@@ -146,37 +142,47 @@
       })
     }
 
-
-  // Edit a flower
-
-      this.editFlower = function(user_id, newFlower) {
-      console.log('user:', self.id, 'flower_id:', newFlower);
-      console.log('flower updated');
+    this.editFlower  = function(flower){
+      console.log('FLOWER ===> ', flower);
+      console.log('in updateFlower code user:', self.id, 'flower', flower);
       return $http({
-        url: `${rootUrl}/users/${self.id}/flowers/${newFlower}`,
-        method: 'PATCH',
-        data: {flower: newFlower}
-      })
-      .then(function(response) {
-        self.editedFlower = {};
-        console.log('flower updated');
-        $state.go('home', {url: '/home', flower: response.data.flower});
-        console.log(response);
-      })
-      .catch(function(err) {
-        console.log(err);
-      })
-      this.isEditing = false;
-
+          url: `${rootUrl}/users/${self.id}/flowers/${flower.id}`,
+          method: 'PUT',
+          data: {flower: flower}
+        })
+        .then(function(response) {
+            console.log('UPDATE RESPONSE ===> ', response);
+            // console.log('NO ERROR check point:'+response);
+            // console.log('NO ERROR  flowers are '+self.flowers);
+           $state.go('home', {url: '/home', user: response});
+           return response;
+           {reload: true}
+        })
+        .catch(function(err) {
+          console.log('There is an error at 200 and it is:'+err);
+        })
     }
+
+    // this.getFlowers = function(flowers){
+    //   return $http({
+    //     url: `${rootUrl}/users/${self.id}/flowers`,
+    //     method: 'GET',
+    //     data: flowers
+    //   })
+    // }
+    // .then(function(response){
+    //   self.currentUser.flowers = response.data.flowers;
+    //   console.log(response);
+    // })
+    // .catch(function(error){
+    //   console.log(error);
+    // })
 
       // public methods
       this.startCreating = startCreating;
-      // this.addFlower = addFlower;
-      // this.deleteFlower = deleteFlower;
       this.startEditing    = startEditing;
       this.setFlowerToEdit = setFlowerToEdit;
-      // this.editFlower      = editFlower;
+      //this.editFlower      = editFlower;
       this.reset           = reset;
 
   });

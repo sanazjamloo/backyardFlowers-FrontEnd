@@ -1,18 +1,16 @@
 <div class="container">
-Hello from home.html
-<a ui-sref-active="active" ui-sref="user"  ng-show="true" class="welcome" ng-if="main.currentUser"> <!-- CHANGE NG-HIDE -->
+  <a  ng-show="true" class="welcome" ng-if="main.currentUser">
   <h3>Welcome, {{ main.currentUser.username }}!</h3>
 </a>
     <div class="flowers">
       <div class="flower" ng-repeat="flower in main.flowers">
             <p>Name: {{flower.name}}</p>
-            <p>Date Planted: {{flower.datePlanted | date:'short'}}</p>
-            <p>Perennial or Annual: {{flower.perennialOrAnnual}}</p>
+            <p>Date Planted: {{flower.date_planted}}</p>
+            <p>Perennial or Annual: {{flower.perennial_or_annual}}</p>
             <p>Sun: {{flower.sun}}</p>
             <p>Water: {{flower.water}}</P>
             <p>Memo: {{flower.memo}}</p>
-         <div class="nav">
-
+          <div class="nav">
            <!-- <div class="edit-form" ng-show="main.showEditForm"> -->
             <button  id="edit-button" class="btn btn-primary btn-sm" ng-click="main.setFlowerToEdit(flower); main.startEditing()">Edit</button>
             <button  class="btn btn-primary btn-sm" ng-click="main.deleteFlower(main.user.id,  flower.id)">Delete</button>
@@ -20,33 +18,33 @@ Hello from home.html
         </div>
       </div>
     <div class="nav" ng-hide="main.isCreating || main.isEditing">
-      <button  class="btn btn-primary btn-sm" ng-click="main.startCreating()">Add Flowers!</button>
+      <button  id="add-flowers"class="btn btn-primary btn-sm" ng-click="main.startCreating()">Add Flowers!</button>
   </div>
       <div ng-show="main.isCreating" class="create-form">
           <form ng-submit="main.addFlower(main.newFlower, main.user.id)">
     <div>
       <label for="name">Name</label>
-      <input type="text" ng-model="main.newFlower.name">
+      <input id="name" type="text" ng-model="main.newFlower.name">
     </div>
     <div>
-      <label for="datePlanted">Date Planted</label>
-      <input type="date" ng-model="main.newFlower.datePlanted">
+      <label for="date_planted">Date Planted</label>
+      <input id="date_planted" type="text" ng-model="main.newFlower.date_planted">
     </div>
     <div>
-      <label for="perennialOrAnnual">Perennial or Annual</label>
-      <input type="text" ng-model="main.newFlower.perennialOrAnnual">
+      <label for="perennial_or_annual">Perennial or Annual</label>
+      <input id="annual" type="text" ng-model="main.newFlower.perennial_or_annual">
     </div>
     <div>
       <label for="sun">Sun</label>
-      <input type="text" ng-model="main.newFlower.sun">
+      <input id="sun" type="text" ng-model="main.newFlower.sun">
     </div>
     <div>
       <label for="water">Water</label>
-      <input type="text" ng-model="main.newFlower.water">
+      <input id="water" type="text" ng-model="main.newFlower.water">
     </div>
     <div>
       <label for="memo">Memo</label>
-      <input type="text" ng-model="main.newFlower.memo">
+      <input id="memo" type="text" ng-model="main.newFlower.memo">
     </div>
       <button  class="btn btn-primary btn-sm" id="add-flower" type="submit">Add Flower!</button>
       </form>
@@ -54,35 +52,33 @@ Hello from home.html
     </div>
 
     <div ng-show="main.isEditing" class="edit-form">
-      <form ng-submit="main.editFlower(main.editedFlower)" action="#">
+      <form ng-submit="main.updateFlower(main.editedFlower)" action="#">
     <div>
       <label for="name">Name</label>
-      <input type="text" ng-model="main.editedFlower.name">
+      <input id="name" type="text" ng-model="main.editedFlower.name">
     </div>
     <div>
-      <label for="datePlanted">Date Planted</label>
-      <input type="date" ng-model="main.editedFlower.datePlanted">
+      <label for="date_planted">Date Planted</label>
+      <input id="date_planted" type="text" ng-model="main.editedFlower.date_planted">
     </div>
     <div>
-      <label for="perennialOrAnnual">Perennial or Annual</label>
-      <input type="text" ng-model="main.editedFlower.perennialOrAnnual">
+      <label for="perennial_or_annual">Perennial or Annual</label>
+      <input id="annual" type="text" ng-model="main.editedFlower.perennial_or_annual">
     </div>
     <div>
       <label for="sun">Sun</label>
-      <input type="text" ng-model="main.editedFlower.sun">
+      <input id="sun" type="text" ng-model="main.editedFlower.sun">
     </div>
     <div>
       <label for="water">Water</label>
-      <input type="text" ng-model="main.editedFlower.water">
+      <input id="water" type="text" ng-model="main.editedFlower.water">
     </div>
     <div>
       <label for="memo">Memo</label>
-      <input type="text" ng-model="main.editedFlower.memo">
+      <input id="memo" type="text" ng-model="main.editedFlower.memo">
     </div>
-      <button  class="btn btn-primary btn-sm" type="submit" ng-click="main.editFlower(main.user.id,  flower.id)">Edit This Flower!</button>
+      <button  class="btn btn-primary btn-sm" type="submit" ng-click="main.editFlower(main.editedFlower)">Edit This Flower!</button>
     </form>
     </div>
   </div>
-    <button id='logout' ui-sref='logout' ui-sref-active='active' ng-click='main.logout(user)'>Log Out</button>
-</div>
 </body>

@@ -21,8 +21,18 @@ h1 {
   color: #555;
 }
 
+h3 {
+  text-shadow: 2px 2px #dff0d8;
+  color: #555;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 h5 {
-  font-size: 2em;
+  font-size: 1.5em;
+  margin-left: 3%;
 }
 
 .user-logs {
@@ -77,6 +87,12 @@ h5 {
   color: #524a4a;
 }
 
+.signup-block {
+  justify-content: center;
+  align-items: center;
+  margin-top: 4%;
+}
+
 .login-form-group {
   width: 61%;
   display: block;
@@ -98,20 +114,46 @@ h5 {
   align-items: center;
 }
 
+.create-form, .edit-form  {
+  font-size: 18px;
+  color: #fcf8e3;
+}
+
 .checkbox {
   margin-left: 32%;
 }
 
 .flowers {
-  background-color: red;
-  color: aqua;
+  color: #eee;
   font-size: 20px;
-  width: 25%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin-top: 6%;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
 }
 
 .flower {
-  border: solid;
-  padding: 6%;
+  border: solid 1px;
+  padding: 1%;
+  display: inline-block;
+
+}
+
+.btn-primary {
+  background-repeat: repeat-x;
+  border-color: #5cb85c;
+  background-image: linear-gradient(to bottom,#dff0d8 0,rgba(255, 255, 255, 0) 100%);
+  color: #e009c2;
+  background-color: rgba(223, 243, 215, 0.5);
+}
+
+.btn small {
+  background-color: transparent;
+  background-image: linear-gradient();
 }
 
 #e-mail {
@@ -154,6 +196,21 @@ margin-left: 4%;
   width: 25%;
 }
 
+#logout {
+  margin-left: 15%;
+  /*width: 8%;
+  margin-top: -31%;
+  margin-left: 86%;
+  display: flex;
+  padding-top: 0.5%;
+  padding-left: 2%;
+  position:fixed;*/
+}
+
+#add-flowers {
+  justify-content: center;
+}
+
 #input, #input1 {
   font-family: inherit;
   font-size: inherit;
@@ -166,4 +223,10 @@ margin-left: 4%;
   margin-left: 8%;
   color: #fcf8e3;
   font-size: 1.5em;
+}
+
+#name, #date_planted, #annual, #sun, #water, #memo {
+  background-color: transparent;
+  border-color: #5cb85c;
+  color: #fcf8e3;
 }
