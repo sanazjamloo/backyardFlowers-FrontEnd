@@ -26,6 +26,6 @@ On the Edit flower route in the front-end portion of the application, I came acr
 # Links
 Back-end repository on Github: https://github.com/sanazjamloo/backyardFlowers
 Front-end repository on Github: https://github.com/sanazjamloo/backyardFlowers-FrontEnd
-Back-end  Heroku link:
-Front-end Heroku link:
+Back-end  Heroku link: https://backyardflowers-api.herokuapp.com
+Front-end Heroku link: https://backyardflowers-ui.herokuapp.com
 Wireframes: https://www.draw.io/#G0By2Z2MfeQ8w0ZWVsUjlNWXJYcWs
