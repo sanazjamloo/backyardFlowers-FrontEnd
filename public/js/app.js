@@ -145,7 +145,7 @@
     this.editFlower  = function(flower){
       console.log('FLOWER ===> ', flower);
       console.log('in updateFlower code user:', self.id, 'flower', flower);
-      
+
       return $http({
           url: `${rootUrl}/users/${self.id}/flowers/${flower.id}`,
           method: 'PUT',
