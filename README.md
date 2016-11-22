@@ -24,8 +24,8 @@
 On the Edit flower route in the front-end portion of the application, I came across the Angular JS error for date format for the data type 'Date'. All date-related inputs require the model to be a Date object. If the model is something else, this error will be thrown. Angular does not set validation errors on the in this case as those errors are shown to the user. The model must always be a Date object, otherwise Angular will throw an error. Invalid Date objects (dates whose getTime() is NaN) will be rendered as an empty string. As a result of this issue, my Edit flower route in the front-end isn't able to live update the flower. The update action runs in the back-end and in order to see the changes, the user must log out and log back in.  The updated data is being saved, but is not shown immediately. I tried to change the data type Date to Text to resolve the issue, but the issue still persists.  Further implementations are needed to fix this bug.
 
 # Links
-Back-end repository on Github: https://github.com/sanazjamloo/backyardFlowers
-Front-end repository on Github: https://github.com/sanazjamloo/backyardFlowers-FrontEnd
-Back-end  Heroku link: https://backyardflowers-api.herokuapp.com
-Front-end Heroku link: https://backyardflowers-ui.herokuapp.com
-Wireframes: https://www.draw.io/#G0By2Z2MfeQ8w0ZWVsUjlNWXJYcWs
+- Back-end repository on Github: https://github.com/sanazjamloo/backyardFlowers
+- Front-end repository on Github: https://github.com/sanazjamloo/backyardFlowers-FrontEnd
+- Back-end  Heroku link: https://backyardflowers-api.herokuapp.com
+- Front-end Heroku link: https://backyardflowers-ui.herokuapp.com
+- Wireframes: https://www.draw.io/#G0By2Z2MfeQ8w0ZWVsUjlNWXJYcWs

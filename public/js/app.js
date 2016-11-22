@@ -4,8 +4,8 @@
 
 
       var self      = this;
-      // var rootUrl   = 'http://localhost:3000'
-      var rootUrl = 'https://backyardflowers-api.herokuapp.com';
+      var rootUrl   = 'http://localhost:3000'
+      // var rootUrl = 'https://backyardflowers-api.herokuapp.com';
 //====================================================
 // keeping track of editing and creating states
       this.isCreating   = false;
